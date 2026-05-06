@@ -1,0 +1,172 @@
+/* Specific styles for the detailed Case View */
+
+.doc-header {
+  margin: 10px 0 24px;
+}
+
+.doc-header h1 {
+  font-family: "Fraunces", Georgia, serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  margin: 0 0 10px;
+  line-height: 1.15;
+  color: #cfeaff;
+  letter-spacing: 0.02em;
+}
+
+.c-parties {
+  font-size: 1.1rem;
+  color: var(--accent);
+  margin: 0;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+}
+
+.case-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 20px;
+}
+
+@media (max-width: 980px) {
+  .case-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.case-main {
+  display: grid;
+  gap: 20px;
+  align-content: start;
+}
+
+.case-sidebar {
+  display: grid;
+  gap: 20px;
+  align-content: start;
+}
+
+.text-body {
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: rgba(233, 241, 251, 0.85);
+  margin: 0;
+}
+
+.tags-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.tag {
+  display: inline-block;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  background: rgba(77, 184, 255, 0.1);
+  border: 1px solid rgba(77, 184, 255, 0.25);
+  color: #b9e0ff;
+  backdrop-filter: blur(8px);
+}
+
+.tag.section {
+  background: rgba(184, 107, 255, 0.1);
+  border: 1px solid rgba(184, 107, 255, 0.25);
+  color: #e5ccff;
+}
+
+.archList li {
+  margin-bottom: 12px;
+}
+
+.speakRow {
+  margin-top: 12px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.speakRow select {
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(16, 27, 52, 0.65);
+  color: #e9f1fb;
+  padding: 8px 10px;
+}
+
+/* Rich summary renderer styles */
+.sumHeading {
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #4db8ff;
+  margin: 22px 0 8px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid rgba(77, 184, 255, 0.2);
+}
+
+.sumHeading:first-child {
+  margin-top: 0;
+}
+
+.sumPara {
+  font-size: 1.0rem;
+  line-height: 1.75;
+  color: rgba(233, 241, 251, 0.88);
+  margin: 0 0 10px;
+}
+
+.sumBullet {
+  display: flex;
+  gap: 10px;
+  margin: 6px 0;
+  font-size: 1.0rem;
+  line-height: 1.65;
+  color: rgba(233, 241, 251, 0.88);
+}
+
+.sumBulletDot {
+  color: #4db8ff;
+  flex-shrink: 0;
+  margin-top: 2px;
+  font-size: 0.85rem;
+}
+
+/* Make the summary card body scroll if very long */
+.case-summary-html {
+  max-height: 70vh;
+  overflow-y: auto;
+  padding-right: 6px;
+}
+
+/* Definition list: break long text properly */
+.defsList li {
+  word-break: break-word;
+  line-height: 1.6;
+  margin-bottom: 14px;
+  font-size: 0.95rem;
+}
+
+.defsList li b {
+  color: #b9e0ff;
+  display: block;
+  margin-bottom: 3px;
+}
+
+/* ══ LIGHT MODE OVERRIDES (Case Details) ══ */
+[data-theme="light"] .doc-header h1 { color: #0d1f30; }
+[data-theme="light"] .text-body { color: rgba(13,31,48,.82); }
+[data-theme="light"] .tag { background: rgba(77,184,255,.14); border-color: rgba(77,184,255,.35); color: #1a6da8; }
+[data-theme="light"] .tag.section { background: rgba(124,58,237,.12); border-color: rgba(124,58,237,.3); color: #5b21b6; }
+[data-theme="light"] .speakRow select { border-color: rgba(0,0,0,.18); background: rgba(255,255,255,.85); color: #0d1f30; }
+[data-theme="light"] .sumHeading { color: #1a6da8; border-bottom-color: rgba(26,109,168,.25); }
+[data-theme="light"] .sumPara { color: rgba(13,31,48,.85); }
+[data-theme="light"] .sumBullet { color: rgba(13,31,48,.85); }
+[data-theme="light"] .sumBulletDot { color: #1a6da8; }
+[data-theme="light"] .defsList li b { color: #1a6da8; }
+[data-theme="light"] .case-summary-html { color: rgba(13,31,48,.85); }

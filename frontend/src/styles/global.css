@@ -1,0 +1,158 @@
+/* ── Box sizing ── */
+* { box-sizing: border-box; }
+
+/* ═══════════════════════════════════════════════════
+   DARK MODE TOKENS (default)
+═══════════════════════════════════════════════════ */
+:root {
+  --bjcc-bg: linear-gradient(135deg, #050b16 0%, #081c2f 48%, #0c3b52 100%);
+  --bjcc-bg-body: #050b16;
+  --bjcc-ink: #eaf4ff;
+  --bjcc-muted: #9ab0c9;
+  --bjcc-stroke: rgba(255,255,255,.12);
+  --bjcc-stroke2: rgba(255,255,255,.16);
+  --bjcc-panel: rgba(255,255,255,.08);
+  --bjcc-panel2: rgba(255,255,255,.045);
+  --bjcc-shadow: 0 24px 90px rgba(0,0,0,.32);
+  --bjcc-card-bg: linear-gradient(145deg, rgba(255,255,255,.08) 0%, rgba(255,255,255,.04) 100%);
+  --bjcc-nav-bg: rgba(10,5,32,.88);
+  --bjcc-input-bg: rgba(0,0,0,.26);
+  --bjcc-input-color: #fff;
+  --bjcc-input-placeholder: rgba(255,255,255,.40);
+  --bjcc-scrollbar-thumb: rgba(255,255,255,.16);
+  --bjcc-scrollbar-track: rgba(0,0,0,.25);
+  --bjcc-lang-btn-bg: #1e293b;
+  --bjcc-lang-dd-bg: #1e293b;
+  --bjcc-glass-bg: rgba(255,255,255,.03);
+  --bjcc-glass-border: rgba(255,255,255,.08);
+  --bjcc-section-title: #fff;
+  --bjcc-quote-color: rgba(255,255,255,.45);
+  --bjcc-stat-label: rgba(255,255,255,.4);
+  --bjcc-empty-state: rgba(255,255,255,.3);
+  --bjcc-result-title: #e0e7ff;
+  --bjcc-result-summary: rgba(255,255,255,.5);
+  --bjcc-result-meta: rgba(255,255,255,.3);
+  --bjcc-msg-text: rgba(255,255,255,.75);
+  --bjcc-footer-link: rgba(255,255,255,.3);
+  --bjcc-footer-sub: rgba(255,255,255,.2);
+  --bjcc-hero-subtitle: rgba(255,255,255,.5);
+  --bjcc-feature-desc: rgba(255,255,255,.5);
+  --bjcc-testimonial-text: rgba(255,255,255,.65);
+  --bjcc-testimonial-author: #fff;
+  --bjcc-cta-sub: rgba(255,255,255,.45);
+  --bjcc-nav-link-color: rgba(255,255,255,.6);
+  --bjcc-orb-vis: 1;
+  --bjcc-star-vis: 1;
+  --bjcc-select-opt-bg: #0b233a;
+}
+
+/* ═══════════════════════════════════════════════════
+   LIGHT MODE OVERRIDES
+═══════════════════════════════════════════════════ */
+[data-theme="light"] {
+  --bjcc-bg: linear-gradient(135deg, #e8f0fe 0%, #dce8f5 48%, #cfe0f0 100%);
+  --bjcc-bg-body: #f0f4f8;
+  --bjcc-ink: #0d1f30;
+  --bjcc-muted: #4a6580;
+  --bjcc-stroke: rgba(0,0,0,.12);
+  --bjcc-stroke2: rgba(0,0,0,.18);
+  --bjcc-panel: rgba(255,255,255,.75);
+  --bjcc-panel2: rgba(255,255,255,.55);
+  --bjcc-shadow: 0 8px 32px rgba(0,0,0,.12);
+  --bjcc-card-bg: linear-gradient(145deg, rgba(255,255,255,.9) 0%, rgba(255,255,255,.75) 100%);
+  --bjcc-nav-bg: rgba(255,255,255,.88);
+  --bjcc-input-bg: rgba(255,255,255,.8);
+  --bjcc-input-color: #0d1f30;
+  --bjcc-input-placeholder: rgba(13,31,48,.45);
+  --bjcc-scrollbar-thumb: rgba(0,0,0,.18);
+  --bjcc-scrollbar-track: rgba(0,0,0,.06);
+  --bjcc-lang-btn-bg: #fff;
+  --bjcc-lang-dd-bg: #fff;
+  --bjcc-glass-bg: rgba(255,255,255,.65);
+  --bjcc-glass-border: rgba(0,0,0,.1);
+  --bjcc-section-title: #0d1f30;
+  --bjcc-quote-color: rgba(13,31,48,.55);
+  --bjcc-stat-label: rgba(13,31,48,.5);
+  --bjcc-empty-state: rgba(13,31,48,.4);
+  --bjcc-result-title: #1a2c42;
+  --bjcc-result-summary: rgba(13,31,48,.65);
+  --bjcc-result-meta: rgba(13,31,48,.45);
+  --bjcc-msg-text: rgba(13,31,48,.8);
+  --bjcc-footer-link: rgba(13,31,48,.45);
+  --bjcc-footer-sub: rgba(13,31,48,.35);
+  --bjcc-hero-subtitle: rgba(13,31,48,.6);
+  --bjcc-feature-desc: rgba(13,31,48,.65);
+  --bjcc-testimonial-text: rgba(13,31,48,.72);
+  --bjcc-testimonial-author: #0d1f30;
+  --bjcc-cta-sub: rgba(13,31,48,.6);
+  --bjcc-nav-link-color: rgba(13,31,48,.7);
+  --bjcc-orb-vis: 0.35;
+  --bjcc-star-vis: 0;
+  --bjcc-select-opt-bg: #e8f0fe;
+}
+
+/* ── Base body ── */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  background: var(--bjcc-bg-body);
+  color: var(--bjcc-ink);
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* ── Utility classes ── */
+.container { max-width: 960px; margin: 24px auto; padding: 16px; }
+.row { display: flex; gap: 10px; align-items: center; margin: 8px 0; }
+.wrap { flex-wrap: wrap; }
+.btn { background: #0f4c81; color: #fff; border: 0; padding: 8px 12px; border-radius: 6px; text-decoration: none; cursor: pointer; }
+.card { background: var(--bjcc-panel); border-radius: 8px; border: 1px solid var(--bjcc-stroke); padding: 14px; margin: 12px 0; }
+input, select, textarea { width: 100%; padding: 8px; margin: 6px 0; border-radius: 6px; border: 1px solid var(--bjcc-stroke); }
+textarea { min-height: 90px; }
+.chatbox { max-height: 220px; overflow: auto; background: var(--bjcc-panel); padding: 10px; border-radius: 6px; border: 1px solid var(--bjcc-stroke); }
+.note { color: var(--bjcc-muted); }
+.error { color: #b00020; }
+.red { border-left: 6px solid #d32f2f; }
+.yellow { border-left: 6px solid #fbc02d; }
+.green { border-left: 6px solid #2e7d32; }
+
+/* ── Scrollbars ── */
+*::-webkit-scrollbar { height: 8px; width: 8px; }
+*::-webkit-scrollbar-thumb { background: var(--bjcc-scrollbar-thumb); border-radius: 999px; }
+*::-webkit-scrollbar-track { background: var(--bjcc-scrollbar-track); }
+
+/* ════════════════════════════════════════════════════
+   THEME TOGGLE BUTTON  (used by ALL pages)
+════════════════════════════════════════════════════ */
+.theme-toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1.5px solid var(--bjcc-stroke);
+  background: var(--bjcc-panel);
+  color: var(--bjcc-ink);
+  cursor: pointer;
+  font-size: 1.1rem;
+  transition: background 0.22s ease, border-color 0.22s ease, transform 0.18s ease, box-shadow 0.22s ease;
+  flex-shrink: 0;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+.theme-toggle-btn:hover {
+  transform: scale(1.12) rotate(15deg);
+  border-color: rgba(124,58,237,.55);
+  box-shadow: 0 0 18px rgba(124,58,237,.25);
+  background: rgba(124,58,237,.12);
+}
+[data-theme="light"] .theme-toggle-btn {
+  border-color: rgba(0,0,0,.15);
+  background: rgba(255,255,255,.8);
+  color: #0d1f30;
+  box-shadow: 0 2px 8px rgba(0,0,0,.10);
+}
+[data-theme="light"] .theme-toggle-btn:hover {
+  border-color: rgba(124,58,237,.45);
+  background: rgba(124,58,237,.08);
+}

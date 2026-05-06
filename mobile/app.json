@@ -1,0 +1,36 @@
+{
+  "expo": {
+    "name": "Bharat Judicial Court Connect",
+    "slug": "bhashini-judicial-assistant",
+    "owner": "banu01",
+    "scheme": "bharatcourtconnect",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "dark",
+    "newArchEnabled": true,
+    "splash": {
+      "image": "./assets/splash-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#0a192f"
+    },
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#0a192f"
+      },
+      "edgeToEdgeEnabled": true,
+      "package": "com.bharatcourtconnect.app"
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      "expo-web-browser",
+      "@react-native-google-signin/google-signin"
+    ]
+  }
+}

@@ -1,0 +1,72 @@
+version: '3.8'
+
+services:
+  # PostgreSQL Database
+  db:
+    image: postgres:15-alpine
+    container_name: jk-governance-db
+    environment:
+      POSTGRES_DB: jk_governance
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: secure_password_123
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - "5432:5432"
+    networks:
+      - jk-network
+
+  # Redis for caching and queues
+  redis:
+    image: redis:7-alpine
+    container_name: jk-governance-redis
+    ports:
+      - "6379:6379"
+    networks:
+      - jk-network
+
+  # FastAPI Backend
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: jk-governance-api
+    environment:
+      DATABASE_URL: postgresql://admin:secure_password_123@db:5432/jk_governance
+      REDIS_URL: redis://redis:6379
+      OPENAI_API_KEY: ${OPENAI_API_KEY}
+      JWT_SECRET: ${JWT_SECRET}
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+      - redis
+    volumes:
+      - ./backend:/app
+    networks:
+      - jk-network
+
+  # React Frontend
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: jk-governance-web
+    environment:
+      REACT_APP_API_URL: [localhost](http://localhost:8000)
+      REACT_APP_MAPBOX_TOKEN: ${MAPBOX_TOKEN}
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+    networks:
+      - jk-network
+
+volumes:
+  postgres_data:
+
+networks:
+  jk-network:
+    driver: bridge
+s

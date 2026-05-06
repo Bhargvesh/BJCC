@@ -1,0 +1,12 @@
+version: "3"
+agent:
+  authtoken: 3DA75sIYtCtZXA3S4pqY1RJPs5k_2DPe6z3psjzZakG8ThrrX
+
+tunnels:
+  backend:
+    proto: http
+    addr: 8010
+    domain: marxism-sulfite-remedial.ngrok-free.dev
+  metro:
+    proto: http
+    addr: 8081
