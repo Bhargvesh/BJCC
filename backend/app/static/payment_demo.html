@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Offline Micropayment Demo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/static/india_innovation.css?v=20260408f" />
+  </head>
+  <body>
+    <div class="bg"></div>
+    <div class="wrap">
+      <header class="top">
+        <div class="brand">
+          <div class="logo">IN</div>
+          <div>
+            <h1>Offline Micropayment via Sound Waves</h1>
+            <p>Standalone concept demo page</p>
+          </div>
+        </div>
+        <div class="links">
+          <a class="chip" href="/india-innovation">Back to Judicial Assistant</a>
+          <a class="chip" href="/login" id="whoChip" title="Account">Account</a>
+        </div>
+      </header>
+
+      <section class="grid">
+        <div class="card">
+          <h2>Offline micropayment via sound waves (concept demo)</h2>
+          <p class="sub">
+            Token -> audio -> microphone decode -> confirm. This demonstrates offline transfer via sound and is not production UPI.
+          </p>
+
+          <div class="row">
+            <div class="field">
+              <label>Payee VPA</label>
+              <input id="payee" value="merchant@upi" />
+            </div>
+            <div class="field">
+              <label>Amount (INR)</label>
+              <input id="amount" type="number" min="1" step="1" value="5" />
+            </div>
+            <div class="field" style="flex: 1">
+              <label>Note</label>
+              <input id="note" value="Offline UPI soundwave demo" />
+            </div>
+          </div>
+
+          <div class="row" style="margin-top: 10px">
+            <button class="btn primary" id="btnCreatePay">Create token</button>
+            <button class="btn" id="btnPlay" disabled>Play sound token</button>
+            <button class="btn" id="btnListen">Listen (mic)</button>
+            <button class="btn" id="btnConfirm" disabled>Confirm decoded token</button>
+          </div>
+
+          <div class="split">
+            <div>
+              <h3>Issued token</h3>
+              <pre id="tokenOut" class="pre small">Create a token...</pre>
+            </div>
+            <div>
+              <h3>Decoded token</h3>
+              <pre id="decodedOut" class="pre small">Start listening...</pre>
+            </div>
+          </div>
+
+          <div class="row" style="margin-top: 10px">
+            <div class="hint">
+              For best results: keep speaker + mic close, reduce background noise, and do not set volume too low.
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <script src="/static/payment_demo.js?v=20260408a"></script>
+  </body>
+ </html>

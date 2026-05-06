@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign up — Bhashini Judicial Assistant</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/static/auth.css" />
+  </head>
+  <body>
+    <div class="noise"></div>
+    <div class="wrap">
+      <header class="top">
+        <div class="brand">
+          <div class="logo">IN</div>
+          <div>
+            <h1>Bhashini Judicial Assistant</h1>
+            <p>Create account</p>
+          </div>
+        </div>
+        <a class="chip" href="/login">Login</a>
+      </header>
+
+      <section class="grid">
+        <div class="card">
+          <h2>Sign up</h2>
+          <p class="sub">Create your account to access the demos.</p>
+
+          <div class="row">
+            <div>
+              <label for="name">Full name</label>
+              <input id="name" autocomplete="name" placeholder="Your name" />
+            </div>
+            <div>
+              <label for="email">Email</label>
+              <input id="email" type="email" autocomplete="email" placeholder="you@example.com" />
+            </div>
+          </div>
+
+          <div class="row">
+            <div>
+              <label for="password">Password</label>
+              <input id="password" type="password" autocomplete="new-password" placeholder="At least 6 characters" />
+            </div>
+            <div>
+              <label for="password2">Confirm password</label>
+              <input id="password2" type="password" autocomplete="new-password" placeholder="Repeat password" />
+            </div>
+          </div>
+
+          <button class="btn primary" id="btnSignup">Create account</button>
+
+          <div id="msg" class="err" style="display:none"></div>
+          <div id="ok" class="ok" style="display:none"></div>
+
+          <p class="note">
+            Already have an account? <a href="/login">Login</a>
+          </p>
+        </div>
+
+        <div class="card">
+          <h2>Safety note</h2>
+          <p class="sub">This is a hack/demo auth system (in-memory). Don’t use real passwords.</p>
+          <ul class="bullets">
+            <li>Accounts reset when backend restarts.</li>
+            <li>Token expires in 7 days (demo).</li>
+            <li>For production: database + strong secrets + HTTPS.</li>
+          </ul>
+        </div>
+      </section>
+
+      <footer class="foot">Backend <code>http://127.0.0.1:8000</code></footer>
+    </div>
+
+    <script>
+      const API = "/api/innovation";
+
+      function show(id, text) {
+        const el = document.getElementById(id);
+        el.style.display = "block";
+        el.textContent = text || "";
+      }
+      function hide(id) {
+        const el = document.getElementById(id);
+        el.style.display = "none";
+        el.textContent = "";
+      }
+
+      async function signup() {
+        hide("msg");
+        hide("ok");
+        const name = document.getElementById("name").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const password = document.getElementById("password").value;
+        const password2 = document.getElementById("password2").value;
+        if (!name || !email || !password) {
+          show("msg", "Please fill all fields.");
+          return;
+        }
+        if (password.length < 6) {
+          show("msg", "Password must be at least 6 characters.");
+          return;
+        }
+        if (password !== password2) {
+          show("msg", "Passwords do not match.");
+          return;
+        }
+        const r = await fetch(`${API}/auth/signup`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ name, email, password }),
+        });
+        const d = await r.json();
+        if (!r.ok) {
+          show("msg", d?.detail || "Signup failed.");
+          return;
+        }
+        localStorage.setItem("isi_token", d.token);
+        localStorage.setItem("isi_user", JSON.stringify(d.user || {}));
+        show("ok", "Account created. Redirecting…");
+        window.location.href = "/india-innovation";
+      }
+
+      document.getElementById("btnSignup").addEventListener("click", signup);
+      document.getElementById("password2").addEventListener("keydown", (e) => {
+        if (e.key === "Enter") signup();
+      });
+
+      if (localStorage.getItem("isi_token")) {
+        window.location.href = "/india-innovation";
+      }
+    </script>
+  </body>
+</html>
+

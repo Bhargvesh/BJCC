@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login — Bhashini Judicial Assistant</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/static/auth.css" />
+  </head>
+  <body>
+    <div class="noise"></div>
+    <div class="wrap">
+      <header class="top">
+        <div class="brand">
+          <div class="logo">IN</div>
+          <div>
+            <h1>Bhashini Judicial Assistant</h1>
+            <p>Multilingual legal access · real-time assist · summarization</p>
+          </div>
+        </div>
+        <a class="chip" href="/docs" target="_blank" rel="noreferrer">API docs</a>
+      </header>
+
+      <section class="grid">
+        <div class="card">
+          <h2>Login</h2>
+          <p class="sub">Sign in to access the judicial assistant and payment demo.</p>
+
+          <label for="email">Email</label>
+          <input id="email" type="email" autocomplete="email" placeholder="you@example.com" />
+
+          <label for="password">Password</label>
+          <input id="password" type="password" autocomplete="current-password" placeholder="••••••••" />
+          <p class="note" style="margin-top:8px; font-size:.82rem">
+            <a href="#" id="forgotLink">Forgot password?</a>
+          </p>
+
+          <button class="btn primary" id="btnLogin">Login</button>
+
+          <div id="msg" class="err" style="display:none"></div>
+          <div id="ok" class="ok" style="display:none"></div>
+
+          <p class="note">
+            New here? <a href="/signup">Create an account</a>
+          </p>
+        </div>
+
+        <!-- Forgot Password Modal -->
+        <div id="fpOverlay" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,.6); z-index:999; backdrop-filter:blur(4px)" onclick="closeFP()">
+          <div onclick="event.stopPropagation()" style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); background:linear-gradient(145deg,#0d2033,#0b1a2a); border:1px solid rgba(255,255,255,.18); border-radius:18px; padding:28px 24px; max-width:420px; width:90%; color:#eaf4ff">
+            <h2 style="margin:0 0 10px; font-size:1.15rem">Reset Access</h2>
+            <p style="margin:0 0 14px; color:#8fa3bb; font-size:.9rem; line-height:1.5">
+              This is a <b>demo system</b> — passwords are stored in memory only and reset every time the server restarts.
+            </p>
+            <p style="margin:0 0 6px; color:#8fa3bb; font-size:.88rem">To regain access, choose one of these options:</p>
+            <div style="background:rgba(61,159,217,.1); border:1px solid rgba(61,159,217,.25); border-radius:12px; padding:14px; margin:12px 0;">
+              <p style="margin:0 0 6px; font-weight:700; font-size:.9rem">🔑 Option 1 — Demo login (always works)</p>
+              <p style="margin:0; font-size:.85rem; color:#b0d4f1">Email: <code style="background:rgba(0,0,0,.3);padding:2px 6px;border-radius:6px">demo@judicial.in</code></p>
+              <p style="margin:4px 0 0; font-size:.85rem; color:#b0d4f1">Password: <code style="background:rgba(0,0,0,.3);padding:2px 6px;border-radius:6px">demo1234</code></p>
+            </div>
+            <div style="background:rgba(26,143,110,.1); border:1px solid rgba(26,143,110,.25); border-radius:12px; padding:14px; margin:12px 0;">
+              <p style="margin:0 0 6px; font-weight:700; font-size:.9rem">📝 Option 2 — Create a new account</p>
+              <p style="margin:0; font-size:.85rem; color:#a0d4bd">Go to <a href="/signup" style="color:#4ecb9e; font-weight:700">Sign Up</a> and register again. Takes 10 seconds.</p>
+            </div>
+            <button onclick="useDemo()" style="margin-top:8px; width:100%; padding:11px; border-radius:12px; border:0; background:linear-gradient(135deg,#3d9fd9,#2a8bc4); color:#fff; font-weight:900; cursor:pointer; font-size:.95rem">Use demo credentials</button>
+            <button onclick="closeFP()" style="margin-top:8px; width:100%; padding:10px; border-radius:12px; border:1px solid rgba(255,255,255,.18); background:rgba(255,255,255,.07); color:#eaf4ff; font-weight:700; cursor:pointer; font-size:.9rem">Close</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <h2>Project</h2>
+          <p class="sub">Bhashini-Integrated Real-Time Judicial Assistant for Multilingual Legal Access.</p>
+          <ul class="bullets">
+            <li><b>ASR (speech-to-text)</b> for courtroom/citizen voice input (prototype).</li>
+            <li><b>Translation + simplification</b> across Indian languages (Bhashini-flow mock).</li>
+            <li><b>Legal summarization</b> and ELI5-style explanations over a backend legal dataset.</li>
+          </ul>
+          <p class="note">
+            After login you’ll land on <code>/india-innovation</code>.
+          </p>
+        </div>
+      </section>
+
+      <footer class="foot">Backend <code>http://127.0.0.1:8000</code></footer>
+    </div>
+
+    <script>
+      const API = "/api/innovation";
+
+      function show(id, text) {
+        const el = document.getElementById(id);
+        el.style.display = "block";
+        el.textContent = text || "";
+      }
+      function hide(id) {
+        const el = document.getElementById(id);
+        el.style.display = "none";
+        el.textContent = "";
+      }
+
+      async function login() {
+        hide("msg");
+        hide("ok");
+        const email = document.getElementById("email").value.trim();
+        const password = document.getElementById("password").value;
+        if (!email || !password) {
+          show("msg", "Please enter email and password.");
+          return;
+        }
+        const r = await fetch(`${API}/auth/login`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email, password }),
+        });
+        const d = await r.json();
+        if (!r.ok) {
+          show("msg", d?.detail || "Login failed.");
+          return;
+        }
+        localStorage.setItem("isi_token", d.token);
+        localStorage.setItem("isi_user", JSON.stringify(d.user || {}));
+        show("ok", "Login successful. Redirecting…");
+        window.location.href = "/india-innovation";
+      }
+
+      document.getElementById("btnLogin").addEventListener("click", login);
+      document.getElementById("password").addEventListener("keydown", (e) => {
+        if (e.key === "Enter") login();
+      });
+
+      document.getElementById("forgotLink").addEventListener("click", (e) => {
+        e.preventDefault();
+        document.getElementById("fpOverlay").style.display = "block";
+      });
+
+      function closeFP() {
+        document.getElementById("fpOverlay").style.display = "none";
+      }
+
+      function useDemo() {
+        document.getElementById("email").value = "demo@judicial.in";
+        document.getElementById("password").value = "demo1234";
+        closeFP();
+        login();
+      }
+
+      // If already logged in, go straight to app
+      if (localStorage.getItem("isi_token")) {
+        window.location.href = "/india-innovation";
+      }
+    </script>
+  </body>
+</html>
+

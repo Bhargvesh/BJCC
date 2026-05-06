@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bhashini-Integrated Real-Time Judicial Assistant for Multilingual Legal Access</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/static/india_innovation.css?v=20260408f" />
+  </head>
+  <body>
+    <div class="bg"></div>
+    <div class="wrap">
+      <header class="top">
+        <div class="brand">
+          <div>
+            <h1>Bhashini-Integrated Real-Time Judicial Assistant</h1>
+            <p>Multilingual legal access via ASR/Translation/TTS + legal summarization (prototype)</p>
+          </div>
+        </div>
+        <div class="links">
+          <a class="chip" href="/login" id="whoChip" title="Account">Account</a>
+          <a class="chip" href="/static/payment_demo.html">Offline Micropayment</a>
+          <a class="chip" href="/docs" target="_blank" rel="noreferrer">API docs</a>
+        </div>
+      </header>
+      <div class="topEmblemWrap">
+        <img
+          class="topEmblem"
+          src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/Ashoka_Chakra.svg/3840px-Ashoka_Chakra.svg.png"
+          alt="Ashoka Chakra"
+        />
+        <img
+          class="topEmblem"
+          src="https://upload.wikimedia.org/wikipedia/commons/b/b4/Emblem_of_India_with_transparent_background.png"
+          alt="Emblem of India"
+        />
+        <img
+          class="topEmblem"
+          src="https://png.pngtree.com/png-clipart/20250222/original/pngtree-splattered-indian-flag-design-patriotism-national-pride-india-tricolor-png-image_20495980.png"
+          alt="Indian tricolor emblem"
+        />
+      </div>
+      <section class="quoteStrip" aria-label="Legal inspiration lines">
+        <span class="q" id="rotatingQuote">Satyameva Jayate - Truth alone triumphs.</span>
+      </section>
+
+      <section class="grid">
+        <div class="card judicialCard">
+          <h2>1) Judicial data (local backend dataset)</h2>
+          <p class="sub">Search and open items stored in the backend. This is where “all judicial data” lives for the demo.</p>
+
+          <div class="row">
+            <div class="field">
+              <label>Search</label>
+              <input id="q" placeholder="e.g. RTI answer sheets / Aadhaar privacy / arbitration stamp" />
+            </div>
+            <div class="field">
+              <label>Court filter</label>
+              <select id="court">
+                <option value="">All courts</option>
+                <option value="Supreme Court of India">Supreme Court of India</option>
+                <option value="High Courts of India">High Courts of India</option>
+                <option value="Subordinate Courts (Lower Courts)">Subordinate Courts (Lower Courts)</option>
+              </select>
+            </div>
+            <div class="field">
+              <label>Language</label>
+              <select id="lang">
+                <option value="en">English</option>
+                <option value="hi">Hindi</option>
+                <option value="doi">Dogri</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="row" style="margin-top: 10px">
+            <button class="btn primary" id="btnSearch">Search</button>
+            <button class="btn" id="btnSeed">Load examples</button>
+          </div>
+
+          <div class="div-results">
+            <h3>Results</h3>
+            <div id="results" class="list empty">Run a search to see results.</div>
+          </div>
+        </div>
+
+        <div class="card assistantCard">
+          <h2>2) Real-time Judicial Assistant (Bhashini-integrated flow)</h2>
+          <p class="sub">Dictate (ASR), translate/simplify, and get contextual summaries from the backend legal dataset (prototype).</p>
+
+          <div class="row">
+            <div class="field" style="flex: 1">
+              <label>Your query</label>
+              <input id="assistantMsg" placeholder="Ask: What are key points on Aadhaar privacy proportionality?" />
+            </div>
+            <div class="field">
+              <label>&nbsp;</label>
+              <button class="btn primary" id="btnAsk">Ask</button>
+            </div>
+          </div>
+
+          <div class="row">
+            <button class="btn" id="btnVoice">Dictate (voice→text)</button>
+            <div class="hint">
+              Uses `/api/innovation/voice-to-text` (demo mode if Whisper isn’t installed).
+            </div>
+          </div>
+
+          <div class="chat">
+            <div id="chatLog" class="chatLog"></div>
+            <div class="mini">
+              <span class="badge">Tip</span>
+              Try: “Draft an issue-rule-application note for RTI answer sheet disclosure.”
+            </div>
+          </div>
+        </div>
+
+        <div class="card architectureCard">
+          <h2>System Architecture</h2>
+          <p class="sub">How the assistant processes speech, text, translation, and legal reasoning (as proposed).</p>
+
+          <div class="arch">
+            <div class="archBlock">
+              <h3>1) Speech &amp; Text Processing Layer (Bhashini APIs)</h3>
+              <ul class="archList">
+                <li><b>Speech-to-Text (ASR)</b>: converts courtroom proceedings into text</li>
+                <li><b>Real-Time Translation</b>: translates content into regional languages (e.g., Hindi, Dogri)</li>
+                <li><b>Text-to-Speech (TTS)</b>: enables audio playback for accessibility</li>
+              </ul>
+            </div>
+
+            <div class="archBlock">
+              <h3>2) Legal Understanding &amp; Summarization Engine</h3>
+              <ul class="archList">
+                <li><b>Plain-language summaries</b> of case proceedings</li>
+                <li><b>Entity extraction</b> (case type, parties involved, judgments)</li>
+                <li><b>ELI5 interpretations</b> of complex legal jargon</li>
+              </ul>
+            </div>
+
+            <div class="archBlock">
+              <h3>3) Context-Aware Legal Assistance Agent</h3>
+              <ul class="archList">
+                <li>“What is the status of my case?”</li>
+                <li>“What does this judgment mean?”</li>
+                <li>“What are my next legal steps?”</li>
+              </ul>
+              <p class="hint" style="margin: 10px 0 0">
+                The system provides contextual, multilingual responses, bridging the gap between legal complexity and citizen understanding.
+              </p>
+            </div>
+
+            <div class="archBlock">
+              <h3>4) Judicial Dashboard &amp; Integration Layer</h3>
+              <ul class="archList">
+                <li><b>Web/mobile interface</b> for courts and citizens</li>
+                <li><b>Real-time translated transcripts</b></li>
+                <li><b>Case summaries &amp; highlights</b></li>
+                <li><b>Searchable legal records</b></li>
+                <li><b>e-Courts integration</b> for seamless adoption</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+      <footer class="foot">
+        Backend: <code>http://127.0.0.1:8000</code> · Page: <code>/india-innovation</code>
+      </footer>
+    </div>
+
+    <script src="/static/india_innovation.js?v=20260408e"></script>
+  </body>
+</html>

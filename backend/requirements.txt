@@ -1,0 +1,13 @@
+fastapi
+uvicorn[standard]
+python-dotenv
+httpx
+python-multipart
+openai
+bcrypt
+PyJWT
+google-auth
+email-validator
+numpy
+scikit-learn
+gTTS

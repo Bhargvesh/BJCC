@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Case details - Judicial Assistant</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/static/india_innovation.css?v=20260408a" />
+    <link rel="stylesheet" href="/static/case.css?v=20260408a" />
+  </head>
+  <body>
+    <div class="bg"></div>
+    <div class="wrap">
+      <header class="top">
+        <div class="brand">
+          <div class="logo">IN</div>
+          <div>
+            <h1>Judicial Document Viewer</h1>
+            <p id="docMeta">Loading document data...</p>
+          </div>
+        </div>
+        <div class="links">
+          <a class="chip" href="/india-innovation">&larr; Back to Dashboard</a>
+        </div>
+      </header>
+
+      <section class="grid" id="mainSpinner">
+         <div class="card" style="text-align: center; padding: 60px;">
+             <h2>Fetching Case Details...</h2>
+         </div>
+      </section>
+
+      <section class="grid" id="caseContent" style="display: none;">
+        <div class="doc-header">
+           <h1 id="cTitle">Case Title</h1>
+           <p class="c-parties" id="cParties">Parties involved</p>
+        </div>
+
+        <div class="case-grid">
+           <!-- Left Column: Summary and Details -->
+           <div class="case-main">
+              <div class="card">
+                <h2>Summary</h2>
+                <p id="cSummary" class="text-body"></p>
+                <div class="speakRow">
+                  <select id="speakLang">
+                    <option value="en">English</option>
+                    <option value="hi">Hindi</option>
+                    <option value="doi">Dogri</option>
+                  </select>
+                  <button class="btn" id="btnSpeakSummary">Speak summary</button>
+                </div>
+              </div>
+
+              <div class="card">
+                <h2>Key Points</h2>
+                <ul id="cKeyPoints" class="archList text-body">
+                </ul>
+              </div>
+           </div>
+
+           <!-- Right Column: Metadata and Tags -->
+           <div class="case-sidebar">
+              <div class="card">
+                 <h2>Legal Acts</h2>
+                 <div id="cActs" class="tags-container"></div>
+                 <ul id="cActDetails" class="archList text-body defsList"></ul>
+                 
+                 <h2 style="margin-top:24px;">Key Sections</h2>
+                 <div id="cSections" class="tags-container"></div>
+                 <ul id="cSectionDetails" class="archList text-body defsList"></ul>
+              </div>
+
+              <div class="card" id="citationsCard" style="display: none;">
+                 <h2>Citations</h2>
+                 <ul id="cCitations" class="archList text-body"></ul>
+              </div>
+              <div class="card" id="sourceCard" style="display: none;">
+                <h2>Official Publication</h2>
+                <p id="cOfficialSource" class="text-body"></p>
+                <a id="cPublicationUrl" class="chip" target="_blank" rel="noreferrer">Open publication</a>
+              </div>
+           </div>
+        </div>
+      </section>
+
+      <footer class="foot">
+        Backend: <code>http://127.0.0.1:8000</code> · Page: <code>/case</code>
+      </footer>
+    </div>
+
+    <script src="/static/case.js?v=20260408a"></script>
+  </body>
+</html>
