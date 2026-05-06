@@ -11,3 +11,7 @@ email-validator
 numpy
 scikit-learn
 gTTS
+pymongo
+dnspython
+googletrans==3.1.0a0
+asyncio
