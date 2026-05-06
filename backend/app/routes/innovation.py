@@ -24,7 +24,7 @@ from app.services.bhashini_service import bhashini_service
 from app.services.speech_to_text import speech_service
 
 router = APIRouter()
-_HTTP_CLIENT = httpx.AsyncClient(timeout=httpx.Timeout(10.0, connect=5.0))
+_HTTP_CLIENT = httpx.AsyncClient(timeout=10.0)
 
 
 _SIGNING_SECRET = b"demo-secret-change-me"
